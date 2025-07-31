@@ -41,3 +41,24 @@ export function showLoader() {
 export function hideLoader() {
   loader.classList.remove('visible'); 
 }
+
+
+
+const loadMoreBtn = document.querySelector('.load-more');
+const loaderWrapper = document.querySelector('.loader-wrapper');
+
+export function showLoader() {
+  loaderWrapper.classList.remove('is-hidden');
+}
+
+export function hideLoader() {
+  loaderWrapper.classList.add('is-hidden');
+}
+
+export function showLoadMoreButton() {
+  loadMoreBtn.classList.remove('is-hidden');
+}
+
+export function hideLoadMoreButton() {
+  loadMoreBtn.classList.add('is-hidden');
+}

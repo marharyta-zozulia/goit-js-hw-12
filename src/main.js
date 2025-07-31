@@ -36,3 +36,35 @@ form.addEventListener('submit', async e => {
     hideLoader();
   }
 });
+
+
+
+loadMoreBtn.addEventListener('click', async () => {
+    page += 1;
+    showLoader();
+    try {
+        const { hits } = await getImagesByQuery(query, page);
+        createGallery(hits);
+        const totalPages = Math.ceil(totalHits / perPage);
+        if (page >= totalPages) {
+            hideLoadMoreButton();
+            iziToast.info({
+                message: "We're sorry, but you've reached the end of search results.",
+                position: 'topRight',
+            });
+        }
+        hideLoader();
+
+        const { height: cardHeight } = document.querySelector('.gallery-item').getBoundingClientRect();
+        window.scrollBy({
+        top: cardHeight * 2,
+        behavior: 'smooth',
+    });
+    } catch (error) {
+        hideLoader();
+    iziToast.error({
+      message: 'Error',
+      position: 'topRight',
+    });
+  }
+});
