@@ -169,6 +169,11 @@ button[type="button"]:hover {
   /* Показується при завантаженні */
 }
 
+
+.load-more {
+
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);

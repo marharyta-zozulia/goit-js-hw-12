@@ -33,17 +33,6 @@ export function clearGallery() {
     gallery.innerHTML = '';
 }
   
-
-export function showLoader() {
-    loader.classList.add('visible'); 
-}
-  
-export function hideLoader() {
-  loader.classList.remove('visible'); 
-}
-
-
-
 const loadMoreBtn = document.querySelector('.load-more');
 const loaderWrapper = document.querySelector('.loader-wrapper');
 
