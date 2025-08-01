@@ -64,15 +64,13 @@ form.addEventListener('submit', async e => {
 loadMoreBtn.addEventListener('click', async () => {
     page += 1;
 
-    // Hide the "Load More" button and show loading text
     
 
  loadMoreBtn.classList.add('is-hidden');
  const loadingText = document.querySelector('.loader-text');
     loadingText.classList.remove('is-hidden');
     
-    
-    // Show loading text
+
  
 
     showLoader(loaderWrapper);
@@ -92,8 +90,8 @@ loadMoreBtn.addEventListener('click', async () => {
         hideLoader();
 
 
-        loadingText.classList.add('is-hidden');  // Hide loading text
-    loadMoreBtn.classList.remove('is-hidden');  // Show "Load More" button again
+        loadingText.classList.add('is-hidden');  
+    loadMoreBtn.classList.remove('is-hidden');  
 
 
         const { height: cardHeight } = document.querySelector('.gallery-item').getBoundingClientRect();
