@@ -175,10 +175,12 @@ button[type="button"]:hover {
 
 
 .loader-text {
-  margin-left: 10px;
+
+  padding-left: 40px;
   font-size: 14px;
-  align-self: center;
+  text-align: center;
   color: #666;
+
 }
 
 .load-more {

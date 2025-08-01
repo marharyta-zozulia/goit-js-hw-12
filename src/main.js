@@ -66,12 +66,13 @@ loadMoreBtn.addEventListener('click', async () => {
 
     
 
- loadMoreBtn.classList.add('is-hidden');
+    loadMoreBtn.classList.add('is-hidden');
+    
  const loadingText = document.querySelector('.loader-text');
     loadingText.classList.remove('is-hidden');
     
 
- 
+    loadMoreBtn.parentElement.appendChild(loadingText);
 
     showLoader(loaderWrapper);
     try {
