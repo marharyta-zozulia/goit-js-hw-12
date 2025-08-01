@@ -8,7 +8,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 const form = document.querySelector('.form');
 const input = document.querySelector('input[name="search-text"]');
 const loadMoreBtn = document.querySelector('.load-more');
-
+const loaderWrapper = document.querySelector('.loader-wrapper');
 
 let query = '';
 let page = 1;
@@ -24,11 +24,13 @@ form.addEventListener('submit', async e => {
     page = 1;
     clearGallery();
     hideLoadMoreButton();
-    showLoader();
+    showLoader(loaderWrapper);
 
 
     try {
         const { hits, totalHits: total } = await getImagesByQuery(query, page);
+
+        await new Promise(res => setTimeout(res, 1500));
         hideLoader();
         if (hits.length === 0) {
             iziToast.warning({
@@ -48,8 +50,9 @@ form.addEventListener('submit', async e => {
             position: 'topRight',
   });
 }
-    } catch (error) {   
-        hideLoader();
+    } catch (error) {  
+        await new Promise(res => setTimeout(res, 1500));
+        hideLoader(loaderWrapper);
         iziToast.error({
       message: 'We are sorry, but you have reached the end of search results.',
       position: 'topRight',
@@ -60,9 +63,23 @@ form.addEventListener('submit', async e => {
 
 loadMoreBtn.addEventListener('click', async () => {
     page += 1;
-    showLoader();
+
+    // Hide the "Load More" button and show loading text
+    
+
+ loadMoreBtn.classList.add('is-hidden');
+ const loadingText = document.querySelector('.loader-text');
+    loadingText.classList.remove('is-hidden');
+    
+    
+    // Show loading text
+ 
+
+    showLoader(loaderWrapper);
     try {
         const { hits } = await getImagesByQuery(query, page);
+        await new Promise(res => setTimeout(res, 1500));
+
         createGallery(hits);
         const totalPages = Math.ceil(totalHits / perPage);
         if (page >= totalPages) {
@@ -74,12 +91,19 @@ loadMoreBtn.addEventListener('click', async () => {
         }
         hideLoader();
 
+
+        loadingText.classList.add('is-hidden');  // Hide loading text
+    loadMoreBtn.classList.remove('is-hidden');  // Show "Load More" button again
+
+
         const { height: cardHeight } = document.querySelector('.gallery-item').getBoundingClientRect();
         window.scrollBy({
         top: cardHeight * 2,
         behavior: 'smooth',
     });
     } catch (error) {
+        await new Promise(res => setTimeout(res, 1500));
+
         hideLoader();
     iziToast.error({
       message: 'Error',
