@@ -32,7 +32,7 @@ form.addEventListener('submit', async e => {
    
     try {
         const { hits, totalHits: total } = await getImagesByQuery(query, page);
-        await delay(800);
+        
         
         if (hits.length === 0) {
             iziToast.warning({
@@ -58,7 +58,7 @@ form.addEventListener('submit', async e => {
   });
 }
     } catch (error) {  
-        await delay(800);
+       
         hideLoader();
         iziToast.error({
       message: 'We are sorry, but you have reached the end of search results.',
@@ -73,12 +73,12 @@ document.querySelector('.load-more').addEventListener('click', async () => {
 
     hideLoadMoreButton();
     showLoader();
-    showLoaderText();
+    
 
 
     try {
         const { hits } = await getImagesByQuery(query, page);
-        await delay(800);
+        
 
         createGallery(hits);
 
@@ -95,7 +95,7 @@ document.querySelector('.load-more').addEventListener('click', async () => {
 
         }
         hideLoader();
-        hideLoaderText();
+       
 
 
 
@@ -105,16 +105,14 @@ document.querySelector('.load-more').addEventListener('click', async () => {
         behavior: 'smooth',
     });
     } catch (error) {
-        await delay(800);
+        
         hideLoader();
-    hideLoaderText();
+    
     iziToast.error({
       message: 'Error loading more images.',
       position: 'topRight',
     });
   }
 });
-function delay(ms) {
-    return new Promise(res => setTimeout(res, ms));
-  }
+
   
