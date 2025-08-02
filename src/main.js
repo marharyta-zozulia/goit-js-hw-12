@@ -52,6 +52,7 @@ form.addEventListener('submit', async e => {
         const totalPages = Math.ceil(totalHits / perPage);
         if (page >= totalPages) {
             hideLoadMoreButton();
+            
             iziToast.info({
             message: "The end of search results.",
             position: 'topRight',
@@ -85,6 +86,7 @@ document.querySelector('.load-more').addEventListener('click', async () => {
         const totalPages = Math.ceil(totalHits / perPage);
         if (page >= totalPages) {
             hideLoadMoreButton();
+            
             iziToast.info({
                 message: "We're sorry, but you've reached the end of search results.",
                 position: 'topRight',
